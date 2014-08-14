@@ -1,7 +1,9 @@
 #!/usr/bin/python
+# -*- coding: utf-8 -*-
+
 '''
  pyNotation is a Functional Analysis software.
-    Copyright (C) 2014 Clément DELESTRE (cclementddel@gmail.com)
+    Copyright (C) 2014 Clement DELESTRE (cclementddel@gmail.com)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by

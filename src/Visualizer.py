@@ -1,7 +1,7 @@
 #!/usr/bin/python
 '''
  pyNotation is a Functional Analysis software.
-    Copyright (C) 2014 Clément DELESTRE (cclementddel@gmail.com)
+    Copyright (C) 2014 Clement DELESTRE (cclementddel@gmail.com)
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -324,3 +324,9 @@ class VisuManager(object):
 				self.addTrack(locus.name,neighborhood) 
 				return True
 		return False
+		
+#A GARDER
+# http://biopython.org/DIST/docs/api/Bio.Graphics.GenomeDiagram._Feature.Feature-class.html
+# http://biopython.org/DIST/docs/api/Bio.Graphics.GenomeDiagram-module.html 
+# http://biopython.org/DIST/docs/api/Bio.Graphics.GenomeDiagram._Track.Track-class.html
+# http://biopython.org/DIST/docs/api/Bio.SeqFeature.SeqFeature-class.html
