@@ -225,7 +225,7 @@ def nbOfProduct(dict):
 	return total
 	
 	
-def computeAlignment(seqOne,seqTwo,feature,k=3.0): #Remove feature des arguments
+def computeAlignment(seqOne,seqTwo,feature,k=3.5): 
 	threshold=len(seqOne)*k
 	aln=pairwise2.align.globalds(seqOne, seqTwo, matrix,openGap, extendGap)
 	if aln[0][2] < threshold :
