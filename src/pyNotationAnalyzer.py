@@ -290,10 +290,7 @@ def countCodingRegion(recordOne):
 def countDNA(recordOne):
 	total=0
 	for seq in recordOne:
-		for feat in seq.features:
-			if feat.type != "source" :
-				continue
-			total+=feat.location.end
+		total+=len(seq)
 	return total
 	
 def countGC(recordOne):
