@@ -260,7 +260,7 @@ def compareECnumber(prod,feature):
 		#Some feature can have severals EC number
 		for ec in feature.qualifiers['EC_number']:
 			for ecprod in prod.qualifiers['EC_number']:
-				if ec == ecprod :
+				if ec[0:3] == ecprod[0:3] :
 					result.append(feature)
 	except KeyError:
 		result.append(feature)
