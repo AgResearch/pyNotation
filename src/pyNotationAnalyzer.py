@@ -181,19 +181,7 @@ def preComputeFile(file) :
 		record.append(gb_record)	
 	return record
 
-def countCDSQualifiers(list):
-	result={'db_xref':0,'EC_number':0,'translation':0,'locus_tag':0,'inference':0,'note':0,'protein_id':0,'Nb of CDS':0}
-	for seq in list:
-		for feat in seq.features :
-			if feat.type=="CDS":
-				result['Nb of CDS']+=1
-				for key in result :
-					try :
-						feat.qualifiers[key]
-						result[key]=result[key]+1
-					except KeyError:
-						pass
-	return result
+
 
 def researchProduct(record,prod,type="CDS"):
 	hashMap={}
@@ -388,7 +376,7 @@ parser.add_argument("-s",metavar="product",help="looking for a product in severa
 
 parser.add_argument("-a", "--analyze",help="analyze one or several file(s)",action="store_true")
 
-parser.add_argument("-o",metavar="prefix output name",help="print only matching CDS in a file. Output file format is : prefix_product for -s option and prefix_analysis_file for -a option.")
+parser.add_argument("-o",metavar="prefix output name",help="Print similar gene found and analyze results in a file. Output file format is : prefix_product for -s option and prefix_analysis.csv for -a option.")
 parser.add_argument("-q", "--quiet",help="don't display meta data on the stdout.",action="store_true")
 
 parser.add_argument("-x","--ext",metavar="outputfile name",help="extract all protein sequences in one fasta file.")
@@ -424,8 +412,6 @@ if args.analyze :
 			print "# Analyzing file "+file+" #"
 		del recordOne[:]
 		recordOne=preComputeFile(file)
-		#Analyse GBK tags
-		nbTag=countCDSQualifiers(recordOne)
 		#Analyze Seq
 		hashSeq=analyseSeq(recordOne)
 		#Analyze genes
@@ -437,12 +423,7 @@ if args.analyze :
 			DNAseqFile.close()
 			if not args.quiet :
 				print "## Results saved in file "+DNAseqFile.name+" at "+datetime.datetime.now().strftime('%H:%M:%S')+" ##"
-			CDStagsFile=createOutputFile(args.o,"_GBKtags.csv")
-			CDStagsFile.write(getResults(nbTag,"Nb of CDS"))
-			CDStagsFile.close()
-			if not args.quiet :
-				print "## Results saved in file "+CDStagsFile.name+" at "+datetime.datetime.now().strftime('%H:%M:%S')+" ##"
-			genesFiles=createOutputFile(args.o,"_genesInformations.csv")
+			genesFiles=createOutputFile(args.o,"_genesFeatures.csv")
 			genesFiles.write(getResults(hashGenes,"Total gene"))
 			genesFiles.close()
 			if not args.quiet :
@@ -453,8 +434,7 @@ if args.analyze :
 			print getResults(hashSeq,"Genome size (bp)",sep="\t",string="")
 			print "# Genetic informations found in file : "+file+" #"
 			print getResults(hashGenes,"Total gene",sep="\t",string="")
-			print "# GenBanK Tag informations found in file : "+file+" #"
-			print getResults(nbTag,"Nb of CDS",sep="\t",string="")
+
 		
 	if not args.quiet :
 		print "## Analysis finish at "+datetime.datetime.now().strftime('%H:%M:%S')+" ##"
