@@ -371,7 +371,7 @@ def getResults(dict,percentReference,sep=",",string="\""):
 ### Parsing Arguments ###
 #########################
 parser = argparse.ArgumentParser(description="A program that analyze GBB files.",epilog="Version : "+str(version)+"\n"+str(year)+"\nAuthor : "+author+" for more informations or enquiries please contact "+contact,formatter_class=argparse.RawDescriptionHelpFormatter)
-parser.add_argument('file', metavar='File', nargs='+',help='file(s) you want analyzing (only in GenBank format)')
+parser.add_argument('file', metavar='File', nargs='+',help='file(s) you want to analyze (only in GenBank format)')
 parser.add_argument("-s",metavar="product",help="looking for a product in several files (product must be in the first file, case insensitive)")
 
 parser.add_argument("-a", "--analyze",help="analyze one or several file(s)",action="store_true")
